@@ -1,7 +1,9 @@
 from django.shortcuts import render
 
 from backend.models import ExampleModel
+from backend.models import Vote
 from backend.serializers import ExampleSerializer
+from backend.serializers import VoteSerializer
 from rest_framework import mixins
 from rest_framework import generics
 
@@ -37,3 +39,13 @@ class ExampleIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixi
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
+
+class VoteList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = Vote.objects.all()
+    serializer_class = VoteSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
