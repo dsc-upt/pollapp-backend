@@ -49,7 +49,7 @@ class OptionList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generi
         return self.create(request, *args, **kwargs)
 
 
-class OptionIndividual(mixins.RetrieveModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+class OptionIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Option.objects.all()
     serializer_class = OptionSerializer
 
@@ -77,14 +77,20 @@ class VoteIndividual(mixins.RetrieveModelMixin, generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-class PollList(mixins.CreateModelMixin, generics.GenericAPIView):
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+class PollList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
-class PollIndividual(mixins.RetrieveModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+class PollIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
 
