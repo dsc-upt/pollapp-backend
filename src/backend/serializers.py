@@ -10,18 +10,16 @@ class ExampleSerializer(serializers.ModelSerializer):
         model = ExampleModel
         fields = ('id', 'title', 'content', 'date')
 
-
 class PollSerializer(serializers.ModelSerializer):
     class Meta:
         model = Poll
         fields = ('id', 'title', 'question', 'creator')
 
 
-class Vote(serializers.ModelSerializer):
+class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
         fields = ('option', 'poll', 'voter', 'date')
-
 
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:
