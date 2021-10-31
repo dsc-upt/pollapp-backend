@@ -23,6 +23,8 @@ urlpatterns = [
     path('example/<int:pk>/', views.ExampleIndividual.as_view()),
     path('option/', views.OptionList.as_view()),
     path('option/<int:pk>/', views.OptionIndividual.as_view()),
+    path('vote/', views.VoteList.as_view()),
+    path('vote/<int:pk>/', views.VoteIndividual.as_view()),
     path('admin/', admin.site.urls),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
 
