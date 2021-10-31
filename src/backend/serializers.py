@@ -4,4 +4,4 @@ from backend.models import ExampleModel
 class ExampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExampleModel
-        fields = ('id', 'title', 'content')
+        fields = ('id', 'title', 'content', 'date')
