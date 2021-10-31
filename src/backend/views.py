@@ -11,6 +11,7 @@ from backend.serializers import VoteSerializer
 from rest_framework import mixins
 from rest_framework import generics
 
+
 # Create your views here.
 
 # functions for getting ALL the objects from the database using GET method (that's where "List" comes from)
@@ -25,6 +26,7 @@ class ExampleList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gener
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
+
 class OptionList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Option.objects.all()
     serializer_class = OptionSerializer
@@ -34,6 +36,7 @@ class OptionList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generi
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
 
 # functions for getting info about a certain object from the database (by its primary key -> id) using GET method
 # for updating an object using PUT method
@@ -61,7 +64,22 @@ class VoteList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
-    
+
+
+class VoteIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = Vote.objects.all()
+    serializer_class = VoteSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
 class OptionIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Option.objects.all()
     serializer_class = OptionSerializer
@@ -75,9 +93,10 @@ class OptionIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixin
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
+
 class PollList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Poll.objects.all()
-    serializer_class = PollSerializer
+    serializer_class = Poll
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -86,9 +105,10 @@ class PollList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
         return self.create(request, *args, **kwargs)
         return self.create(request, *args, **kwargs)
 
+
 class PollIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Poll.objects.all()
-    serializer_class = PollSerializer
+    serializer_class = Poll
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
