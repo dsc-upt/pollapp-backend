@@ -2,12 +2,12 @@ from django.shortcuts import render
 
 from backend.models import ExampleModel
 from backend.models import Vote
-from backend.serializers import ExampleSerializer
-from backend.serializers import VoteSerializer
 from backend.models import Poll
 from backend.models import Option
 from backend.serializers import ExampleSerializer
 from backend.serializers import OptionSerializer
+from backend.serializers import PollSerializer
+from backend.serializers import VoteSerializer
 from rest_framework import mixins
 from rest_framework import generics
 
