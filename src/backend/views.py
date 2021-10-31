@@ -1,7 +1,9 @@
 from django.shortcuts import render
 
 from backend.models import ExampleModel
+from backend.models import Option
 from backend.serializers import ExampleSerializer
+from backend.serializers import OptionSerializer
 from rest_framework import mixins
 from rest_framework import generics
 
@@ -20,6 +22,15 @@ class ExampleList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gener
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
+class OptionList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = Option.objects.all()
+    serializer_class = OptionSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 # functions for getting info about a certain object from the database (by its primary key -> id) using GET method
 # for updating an object using PUT method
