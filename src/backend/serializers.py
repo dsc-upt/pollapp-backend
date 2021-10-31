@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from backend.models import ExampleModel
+from backend.models import Poll
 from backend.models import Option
 from backend.models import Vote
 
@@ -8,6 +9,10 @@ class ExampleSerializer(serializers.ModelSerializer):
         model = ExampleModel
         fields = ('id', 'title', 'content', 'date')
 
+class PollSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PollModel
+        fields = ('id', 'title', 'question', 'creator')
 
 class Vote(serializers.ModelSerializer):
     class Meta:
