@@ -21,6 +21,8 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 urlpatterns = [
     path('example/', views.ExampleList.as_view()),
     path('example/<int:pk>/', views.ExampleIndividual.as_view()),
+    path('poll/', views.PollList.as_view()),
+    path('poll/<int:pk>/', views.PollIndividual.as_view()),
     path('option/', views.OptionList.as_view()),
     path('option/<int:pk>/', views.OptionIndividual.as_view()),
     path('vote/', views.VoteList.as_view()),
