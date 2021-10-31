@@ -22,6 +22,7 @@ class ExampleList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gener
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
+
 class OptionList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Option.objects.all()
     serializer_class = OptionSerializer
@@ -31,6 +32,7 @@ class OptionList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generi
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
 
 # functions for getting info about a certain object from the database (by its primary key -> id) using GET method
 # for updating an object using PUT method
