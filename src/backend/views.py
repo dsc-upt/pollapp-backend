@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
 from backend.models import ExampleModel
+from backend.models import Vote
+from backend.serializers import ExampleSerializer
+from backend.serializers import VoteSerializer
 from backend.models import Poll
 from backend.models import Option
 from backend.serializers import ExampleSerializer
@@ -48,9 +51,29 @@ class ExampleIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixi
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
+      
+class VoteList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = Vote.objects.all()
+    serializer_class = VoteSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    
 class OptionIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Option.objects.all()
     serializer_class = OptionSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 class PollList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Poll.objects.all()
@@ -60,6 +83,7 @@ class PollList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
         return self.create(request, *args, **kwargs)
 
 class PollIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
@@ -74,14 +98,3 @@ class PollIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
-
-
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-
