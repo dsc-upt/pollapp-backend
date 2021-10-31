@@ -50,3 +50,16 @@ class ExampleIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixi
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
+class OptionIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = Option.objects.all()
+    serializer_class = OptionSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+

@@ -13,7 +13,7 @@ class ExampleSerializer(serializers.ModelSerializer):
 
 class PollSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PollModel
+        model = Poll
         fields = ('id', 'title', 'question', 'creator')
 
 
