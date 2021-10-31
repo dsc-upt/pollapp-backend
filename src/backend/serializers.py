@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from backend.models import ExampleModel
 from backend.models import Option
+from backend.models import Vote
 
 class ExampleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,6 +9,11 @@ class ExampleSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'content', 'date')
 
 
+class Vote(serializers.ModelSerializer):
+    class Meta:
+        model = Vote
+        fields = ('option', 'poll', 'voter', 'date')
+        
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option

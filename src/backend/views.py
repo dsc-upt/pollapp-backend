@@ -7,6 +7,7 @@ from rest_framework import generics
 
 # Create your views here.
 
+
 # functions for getting ALL the objects from the database using GET method (that's where "List" comes from)
 # and also for creating a new object using the POST method
 class ExampleList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
@@ -18,6 +19,7 @@ class ExampleList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gener
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
 
 # functions for getting info about a certain object from the database (by its primary key -> id) using GET method
 # for updating an object using PUT method
@@ -34,3 +36,4 @@ class ExampleIndividual(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixi
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
