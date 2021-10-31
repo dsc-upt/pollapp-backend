@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from backend.models import ExampleModel
+from backend.models import Poll
 
 class ExampleSerializer(serializers.ModelSerializer):
     class Meta:
